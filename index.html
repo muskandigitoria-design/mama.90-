@@ -8,6 +8,7 @@
     <style>
         :root {
             --play-green: #01875f;
+            --play-dark: #006e4e;
             --text-dark: #202124;
             --text-gray: #5f6368;
             --border: #e0e0e0;
@@ -17,99 +18,107 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
         body { background-color: #ffffff; color: var(--text-dark); -webkit-tap-highlight-color: transparent; }
 
-        /* Modern Play Store Nav */
+        /* Navigation Bar */
         nav {
-            height: 65px;
+            height: 60px;
             display: flex;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 16px;
             background: #fff;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--border);
         }
-        .play-logo { height: 28px; }
+        .play-logo { height: 24px; }
 
-        .container { max-width: 600px; margin: 0 auto; padding: 20px 18px; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px 16px; }
 
-        /* Header Section */
-        .app-header { display: flex; gap: 20px; margin-bottom: 25px; }
+        /* App Main Info */
+        .app-header { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px; }
         .app-icon { 
-            width: 88px; height: 88px; 
-            border-radius: 20%; 
+            width: 80px; height: 80px; 
+            border-radius: 18px; 
             object-fit: cover;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         }
-        .app-title-area h1 { font-size: 24px; font-weight: 500; letter-spacing: -0.5px; }
-        .dev-name { color: var(--play-green); font-size: 15px; font-weight: 500; text-decoration: none; display: block; margin-top: 2px; }
-        .info-tags { font-size: 12px; color: var(--text-gray); margin-top: 6px; }
+        .app-title-area h1 { font-size: 22px; font-weight: 500; color: #202124; margin-bottom: 2px; }
+        .dev-link { color: var(--play-green); font-size: 14px; font-weight: 500; text-decoration: none; }
+        .info-sub { font-size: 11px; color: var(--text-gray); margin-top: 4px; }
 
-        /* Premium Stats Bar */
-        .stats-bar { 
+        /* High Resolution Stats Bar */
+        .stats-grid { 
             display: flex; 
-            justify-content: space-between;
-            margin: 25px 0;
-            padding: 10px 0;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+            margin: 20px 0;
             text-align: center;
         }
-        .stat-item { flex: 1; border-right: 1px solid var(--border); }
-        .stat-item:last-child { border-right: none; }
-        .stat-num { font-weight: 700; font-size: 15px; display: block; }
-        .stat-sub { font-size: 11px; color: var(--text-gray); }
+        .stat-box { flex: 1; border-right: 1px solid var(--border); }
+        .stat-box:last-child { border-right: none; }
+        .stat-top { font-weight: 700; font-size: 14px; display: block; }
+        .stat-btm { font-size: 11px; color: var(--text-gray); }
 
-        /* Action Buttons */
-        .btn-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
-        .btn-install { 
-            background: var(--play-green); 
-            color: white; 
-            text-align: center; 
-            padding: 12px; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-weight: 500; 
+        /* TWO BUTTONS SECTION */
+        .btn-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
+        .btn { 
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
             font-size: 14px;
-            transition: background 0.3s;
+            font-weight: 500;
+            transition: 0.2s;
         }
-        .btn-install:hover { background: #006e4e; }
+        .btn-install { background: var(--play-green); color: white; }
+        .btn-install:active { background: var(--play-dark); }
+        .btn-download { background: white; color: var(--play-green); border: 1px solid var(--border); }
+        .btn-download:active { background: var(--bg-light); }
 
-        /* Gambling Content Section */
-        .section-title { font-size: 18px; font-weight: 500; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .about-text { font-size: 14px; color: var(--text-gray); line-height: 1.6; margin-bottom: 20px; }
-        .tags-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px; }
-        .tag { background: #f1f3f4; padding: 6px 14px; border-radius: 20px; font-size: 12px; color: #3c4043; font-weight: 500; }
+        /* Content Tags */
+        .tags { display: flex; overflow-x: auto; gap: 8px; margin-bottom: 20px; padding-bottom: 5px; }
+        .tags::-webkit-scrollbar { display: none; }
+        .tag { background: var(--bg-light); padding: 6px 14px; border-radius: 20px; font-size: 12px; color: #3c4043; white-space: nowrap; }
 
-        /* High-Resolution Reviews Section */
-        .reviews-box { border-top: 8px solid var(--bg-light); padding-top: 25px; }
-        .review-card { margin-bottom: 25px; }
-        .review-user { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-        .avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 13px; }
-        .stars { color: var(--play-green); font-size: 11px; margin-bottom: 5px; }
-        .review-txt { font-size: 14px; color: var(--text-gray); line-height: 1.5; }
+        /* Description */
+        .desc-title { font-size: 16px; font-weight: 500; margin-bottom: 10px; }
+        .desc-text { font-size: 13px; color: var(--text-gray); line-height: 1.6; margin-bottom: 25px; }
 
-        /* Footer */
+        /* Professional Reviews Section */
+        .reviews-wrap { border-top: 8px solid var(--bg-light); padding: 25px 0; }
+        .review { margin-bottom: 20px; }
+        .review-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+        .avatar { width: 30px; height: 30px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+        .stars { color: var(--play-green); font-size: 10px; }
+        .rev-body { font-size: 13px; color: var(--text-gray); line-height: 1.4; }
+
+        /* Trust Banner */
+        .trust-banner { background: #e8f0fe; padding: 10px; border-radius: 8px; font-size: 12px; color: #1967d2; margin-bottom: 20px; text-align: center; font-weight: 500; }
+
+        /* Footer with NexGroww Link */
         footer { 
             background: #f8f9fa; 
-            padding: 40px 20px; 
+            padding: 40px 16px; 
             text-align: center; 
             border-top: 1px solid var(--border);
-            margin-top: 40px;
+            font-size: 11px;
+            color: var(--text-gray);
         }
-        .footer-links { font-size: 12px; color: var(--text-gray); line-height: 2; }
-        .agency-credit { 
-            margin-top: 20px; 
+        .agency { 
+            margin-top: 25px; 
             padding-top: 15px; 
             border-top: 1px dashed #ccc;
-            font-size: 13px; 
-            font-weight: 500;
+            font-size: 13px;
+            color: #202124;
         }
-        .agency-credit a { color: #0088cc; text-decoration: none; }
+        .agency a { color: #0088cc; text-decoration: none; font-weight: 700; }
 
-        @media (max-width: 400px) {
-            .app-icon { width: 72px; height: 72px; }
-            .app-title-area h1 { font-size: 20px; }
+        @media (max-width: 480px) {
+            .app-title-area h1 { font-size: 19px; }
+            .container { padding: 15px; }
         }
     </style>
 </head>
@@ -121,88 +130,84 @@
 
 <div class="container">
     <div class="app-header">
-        <img src="https://via.placeholder.com/180/01875f/ffffff?text=Mama+Matka" class="app-icon" alt="App Icon">
+        <img src="https://fantasticczone.site/wp-content/uploads/2026/02/logo-2.png" class="app-icon" alt="Mama Matka Logo">
         <div class="app-title-area">
             <h1>Mama Matka</h1>
-            <a href="https://telegram.me/+TRlJl628l-FkMWE9" class="dev-name">Official Mama Matka Gaming</a>
-            <p class="info-tags">Contains ads · In-app purchases</p>
+            <a href="https://telegram.me/+TRlJl628l-FkMWE9" class="dev-link">Official Matka Gaming India</a>
+            <p class="info-sub">Contains ads · In-app purchases · Fast Payouts</p>
         </div>
     </div>
 
-    <div class="stats-bar">
-        <div class="stat-item">
-            <span class="stat-num">4.9 ★</span>
-            <span class="stat-sub">1M reviews</span>
+    <div class="stats-grid">
+        <div class="stat-box">
+            <span class="stat-top">4.9 ★</span>
+            <span class="stat-btm">1M+ Reviews</span>
         </div>
-        <div class="stat-item">
-            <span class="stat-num">10M+</span>
-            <span class="stat-sub">Downloads</span>
+        <div class="stat-box">
+            <span class="stat-top">10M+</span>
+            <span class="stat-btm">Downloads</span>
         </div>
-        <div class="stat-item">
-            <span class="stat-num">18+</span>
-            <span class="stat-sub">Rated for 18+</span>
+        <div class="stat-box">
+            <span class="stat-top">18+</span>
+            <span class="stat-btm">Rated for 18+</span>
         </div>
     </div>
 
-    <div class="btn-container">
-        <a href="https://mamamatka.online/MamaMatka.apk" class="btn-install">Install</a>
+    <div class="trust-banner">
+        ✓ Trusted by thousands of people every day across India
     </div>
 
-    <div class="tags-row">
-        <span class="tag">Kalyan Bazar</span>
-        <span class="tag">Main Mumbai</span>
+    <div class="btn-group">
+        <a href="https://mamamatka.online/MamaMatka.apk" class="btn btn-install">Install Now</a>
+        <a href="https://mamamatka.online/MamaMatka.apk" class="btn btn-download">Download APK</a>
+    </div>
+
+    <div class="tags">
+        <span class="tag">Kalyan Morning</span>
+        <span class="tag">Main Bazar</span>
+        <span class="tag">Sridevi Day</span>
         <span class="tag">Rajdhani Night</span>
-        <span class="tag">Fast Results</span>
     </div>
 
-    <div class="section-title">About this app</div>
-    <div class="about-text">
-        Join the community of over <b>10 Million subscribers</b>! Mama Matka is India's most trusted platform for Kalyan Matka, Sridevi, and Rajdhani results. Get 100% fixed guessing tips directly from experts. 
+    <div class="desc-title">About this app</div>
+    <div class="desc-text">
+        Welcome to India's fastest <b>Kalyan Matka</b> app. Join over <b>10 Million subscribers</b> who win daily! Mama Matka provides the most accurate results for Kalyan, Time Bazar, and Milan Night. 
         <br><br>
-        Experience seamless gameplay with high-speed result updates and secure withdrawals. Play the most popular markets including Milan Day, Time Bazar, and Kalyan Night with the official Mama Matka app.
+        Get 100% fixed guessing numbers from our expert panel. Our app is high-resolution, fast-loading, and completely secure for all gambling enthusiasts.
     </div>
 
-    <div class="reviews-box">
-        <div class="section-title">Ratings and reviews</div>
+    <div class="reviews-wrap">
+        <div class="desc-title">Ratings and reviews</div>
         
-        <div class="review-card">
-            <div class="review-user">
-                <div class="avatar" style="background: #1a73e8;">S</div>
-                <span style="font-weight:500;">Sandeep Yadav</span>
+        <div class="review">
+            <div class="review-head">
+                <div class="avatar" style="background:#4285f4">A</div>
+                <span style="font-weight:500; font-size:14px">Arjun Mehra</span>
             </div>
             <div class="stars">★★★★★</div>
-            <p class="review-txt">Best app for Kalyan. Results are very fast. I have been using it for 2 years, no problems with payment ever. 10M people trust this for a reason!</p>
+            <p class="rev-body">Truly high speed results! I play Kalyan and Rajdhani every day and this app never fails. Thousand of people use this for a reason.</p>
         </div>
 
-        <div class="review-card">
-            <div class="review-user">
-                <div class="avatar" style="background: #d93025;">V</div>
-                <span style="font-weight:500;">Vijay Khanna</span>
+        <div class="review">
+            <div class="review-head">
+                <div class="avatar" style="background:#ea4335">S</div>
+                <span style="font-weight:500; font-size:14px">Suresh Kumar</span>
             </div>
             <div class="stars">★★★★★</div>
-            <p class="review-txt">The guessing forum is amazing. I got a single jodi win in Rajdhani Night. Very helpful for serious players.</p>
+            <p class="rev-body">Mama Matka is the most trusted app in India. Withdrawal is instant and the guessing is 100% correct most of the time.</p>
         </div>
 
-        <div class="review-card">
-            <div class="review-user">
-                <div class="avatar" style="background: #f9ab00;">M</div>
-                <span style="font-weight:500;">Manish G.</span>
-            </div>
-            <div class="stars">★★★★★</div>
-            <p class="review-txt">Proper Indian matka app. No lag, high resolution, and very easy to use. Best in the market.</p>
-        </div>
-
-        <a href="https://telegram.me/+TRlJl628l-FkMWE9" style="color: var(--play-green); text-decoration: none; font-weight: 500; font-size: 14px;">See all reviews</a>
+        <a href="https://telegram.me/+TRlJl628l-FkMWE9" style="color:var(--play-green); text-decoration:none; font-size:13px; font-weight:500">Read all 1M reviews</a>
     </div>
 </div>
 
 <footer>
-    <div class="footer-links">
-        Google Play and the Google Play logo are trademarks of Google LLC.<br>
-        Privacy Policy · Terms of Service · 18+ Only
+    <div style="margin-bottom: 10px;">
+        Google Play and the Google Play logo are trademarks of Google LLC.
     </div>
+    <div>© 2026 Mama Matka Online · Privacy Policy · 18+ Only</div>
     
-    <div class="agency-credit">
+    <div class="agency">
         Ads Managed by <a href="https://telegram.me/+TRlJl628l-FkMWE9">NexGroww Agency</a>
     </div>
 </footer>
